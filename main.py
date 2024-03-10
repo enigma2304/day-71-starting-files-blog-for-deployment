@@ -1,3 +1,5 @@
+import os
+from dotenv import load_dotenv
 from datetime import date
 from flask import Flask, abort, render_template, redirect, url_for, flash, request
 from flask_bootstrap import Bootstrap5
@@ -37,6 +39,8 @@ Bootstrap5(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 
+load_dotenv()
+print(os.getenv("FLASK_KEY"))
 
 @login_manager.user_loader
 def load_user(user_id):
