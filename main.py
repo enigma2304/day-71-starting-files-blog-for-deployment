@@ -30,8 +30,10 @@ pip3 install -r requirements.txt
 This will install the packages from the requirements.txt for this project.
 '''
 
+load_dotenv()
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('FLASK_KEY')
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
@@ -45,7 +47,7 @@ def load_user(user_id):
     return db.get_or_404(User, user_id)
 
 
-load_dotenv()
+
 
 # For adding profile images to the comment section
 gravatar = Gravatar(app,
@@ -56,7 +58,6 @@ gravatar = Gravatar(app,
                     force_lower=False,
                     use_ssl=False,
                     base_url=None)
-
 
 # CREATE DATABASE
 class Base(DeclarativeBase):
@@ -307,4 +308,4 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=False, port=5001)
